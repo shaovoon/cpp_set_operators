@@ -1,5 +1,7 @@
 #pragma once
 
+// version 1.1: Remove the std::move during return to enable the "Named Return Value Optimization" 
+
 #include <algorithm>
 #include <iterator>
 
@@ -32,7 +34,7 @@ T operator&(wrapper<T>& left, wrapper<T>& right)
 		c2.begin(), c2.end(),
 		std::back_inserter(v_intersection));
 
-	return std::move(v_intersection);
+	return v_intersection;
 }
 
 template<typename T>
@@ -51,7 +53,7 @@ T operator^(wrapper<T>& left, wrapper<T>& right)
 		c2.begin(), c2.end(),
 		std::back_inserter(v_symDifference));
 
-	return std::move(v_symDifference);
+	return v_symDifference;
 }
 
 template<typename T>
@@ -70,7 +72,7 @@ T operator|(wrapper<T>& left, wrapper<T>& right)
 		c2.begin(), c2.end(),
 		std::back_inserter(dest1));
 
-	return std::move(dest1);
+	return dest1;
 }
 
 template<typename T>
@@ -89,7 +91,7 @@ T operator-(wrapper<T>& left, wrapper<T>& right)
 		c2.begin(), c2.end(),
 		std::back_inserter(diff));
 
-	return std::move(diff);
+	return diff;
 }
 
 // Returns true if left is superset of right?
